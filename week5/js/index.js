@@ -54,7 +54,8 @@ const initMap = (data) => {
 
     let geoJson = L.geoJSON(data, {
         onEachFeature: getFeature,
-        style: getStyle
+        style: getStyle,
+        weight: 2
     }).addTo(map)
 
     let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
