@@ -9,15 +9,15 @@ const fetchData = async () => {
     const res = await fetch(url)
     const data = await res.json()
     
-    const negMigrationData = await getData("https://statfin.stat.fi/PxWeb/sq/4bb2c735-1dc3-4c5e-bde7-2165df85e65f")
-    const posMigrationData  = await getData("https://statfin.stat.fi/PxWeb/sq/944493ca-ea4d-4fd9-a75c-4975192f7b6e")
+    const posMigrationData = await getData("https://statfin.stat.fi/PxWeb/sq/4bb2c735-1dc3-4c5e-bde7-2165df85e65f")
+    const negMigrationData  = await getData("https://statfin.stat.fi/PxWeb/sq/944493ca-ea4d-4fd9-a75c-4975192f7b6e")
 
     console.log(posMigrationData)
     console.log(negMigrationData)
 
     for(let idx = 0; idx < data.features.length; idx++) {
-        data.features[idx].properties.negData = negMigrationData.dataset.value[idx+1];
-        data.features[idx].properties.posData = posMigrationData.dataset.value[idx+1];
+        data.features[idx].properties.posData = negMigrationData.dataset.value[idx+1];
+        data.features[idx].properties.negData = posMigrationData.dataset.value[idx+1];
     }
     console.log(data.features)
     initMap(data)
